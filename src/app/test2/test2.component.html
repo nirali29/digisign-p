@@ -1,0 +1,31 @@
+  <div style="padding: 13px; height: 100%;">
+
+    <mat-card class="card">
+        <mat-card-header class="title">
+            <p>Login</p>
+        
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <span style="font-size: 100px; color: black;" class="material-icons" *ngIf="!isRecording && !blobUrl" (click)="startRecording()"> 
+                    mic
+                </span>
+                <mat-progress-spinner *ngIf="isRecording && !blobUrl" mode="indeterminate"
+                    style="height:50ox" class="spinner">
+                </mat-progress-spinner>
+                <button class="stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">Stop Recording</button>
+                <button class="cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">Clear Recording</button>
+                <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+                <div>
+                <audio *ngIf="!isRecording && blobUrl"  controls>
+                  <source [src]="blobUrl" type="audio/webm">
+                </audio>
+                </div>
+              </div>
+        </mat-card-content>
+      <button mat-button class="login-button" (click)="loginClicked()"> Login</button>
+      <mat-card-footer style="padding: 13px">
+      <button mat-button class="login-button" (click)="newUserClicked()"> New User?</button>
+      </mat-card-footer>
+    </mat-card>
+</div>
